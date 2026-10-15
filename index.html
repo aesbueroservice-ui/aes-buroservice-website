@@ -228,7 +228,9 @@ footer.fx{background:#0E1826;color:#B7C3D3;border:0;padding:var(--sp-6) 0 var(--
 @media(max-width:480px){.tel .tn{display:none}.tel{padding:0;width:46px;height:46px;justify-content:center}.tel .ti{margin:0}}
 
 .fstat{display:none;margin-top:var(--sp-2);border-radius:14px;padding:16px 18px;font-size:.98rem;line-height:1.5}
-.fstat.ok,.fstat.err{display:block}.fstat.ok{background:#1F6B4A;color:#fff}.fstat.ok b{display:block;font-size:1.15rem;margin-bottom:4px}
+.fstat.ok,.fstat.err{display:block}.fstat.ok{background:#1F6B4A;color:#fff;text-align:center}.fstat.ok .tick{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#fff;color:#1F6B4A;margin-bottom:12px;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.fstat.ok b{display:block;font-size:1.15rem;margin-bottom:4px}
 .fstat.err{background:#3A2630;border:1px solid #E58A8A;color:#fff}.fstat a{color:#E2B769;font-weight:700}
 form.sent label,form.sent .btn{display:none}form.sent .fstat{margin-top:0;padding:26px}
 </style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-t" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></symbol><symbol id="i-c" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4zM8 9h8M8 12h5"/></symbol><symbol id="i-k" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></symbol></defs></svg><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -348,4 +350,4 @@ var fd=new FormData(f),body=new URLSearchParams(fd).toString();
 function fail(){btn.disabled=false;btn.textContent=lbl;var t='Name: '+fd.get('name')+'\nKontakt: '+fd.get('kontakt')+'\nInteresse: '+fd.get('thema')+'\n\n'+(fd.get('nachricht')||'');
 var m='mailto:aes.bueroservice@gmail.com?subject='+encodeURIComponent('Anfrage: '+fd.get('thema'))+'&body='+encodeURIComponent(t);
 st.className='fstat err';st.innerHTML='Das Senden hat gerade nicht geklappt. Bitte schreiben Sie mir <a href="'+m+'">per E-Mail</a> oder <a href="https://wa.me/4917670630032" rel="noopener">per WhatsApp</a>. Ihre Eingaben bleiben erhalten.'}
-fetch(f.getAttribute('action'),{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(r){if(!r.ok)throw 0;f.reset();btn.disabled=false;btn.textContent=lbl;f.classList.add('sent');st.className='fstat ok';st.innerHTML='<b>Vielen Dank, Ihre Anfrage ist angekommen.</b>Ich melde mich innerhalb von 24 Stunden bei Ihnen.';st.focus()}).catch(fail)})})();</script></body></html>
+fetch(f.getAttribute('action'),{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(r){if(!r.ok)throw 0;f.reset();btn.disabled=false;btn.textContent=lbl;f.classList.add('sent');st.className='fstat ok';st.innerHTML='<span class="tick"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1F6B4A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span><b>Geschafft, Ihre Anfrage ist abgeschickt.</b>Vielen Dank für Ihr Vertrauen. Ich melde mich innerhalb von 24 Stunden persönlich bei Ihnen.';st.focus()}).catch(fail)})})();</script></body></html>
